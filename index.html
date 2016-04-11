@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! • A-Frame</title>
+    <meta name="description" content="Hello, World! • A-Frame">
+    <script src="aframe.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+    <!-- Drop in another component and use it from markup. -->
+    <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <script id="cube" type="text/x-nunjucks-template">
+        <a-entity layout="type: circle; radius: 5" position="0 1.5 0">
+           {% for x in range(num) %}
+            <a-cube rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9">
+              <a-animation attribute="rotation"
+                dur="10000"
+                fill="alternate"
+                to="180 -315 180"
+                repeat="indefinite"></a-animation>
+            </a-cube>
+           {% endfor %}
+
+        </a-entity>
+        </script>
+        <script id="cube2" type="text/x-nunjucks-template">
+        <a-entity layout="type: circle; radius: 6" position="0 0.5 0">
+           {% for x in range(num) %}
+            <a-cube rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9">
+              <a-animation attribute="rotation"
+                dur="10000"
+                fill="alternate"
+                to="-180 315 -180"
+                repeat="indefinite"></a-animation>
+            </a-cube>
+           {% endfor %}
+
+        </a-entity>
+        </script>
+        <script id="col" type="text/x-nunjucks-template">
+        <a-entity layout="type: circle; radius: 10" position="0 0.5 0">
+           {% for x in range(num) %}
+            <a-cube rotation="0 45 0" width="5" height="15" depth="5" color="#4CC3D9">
+            </a-cube>
+           {% endfor %}
+
+        </a-entity>
+        </script>
+        <script id="col2" type="text/x-nunjucks-template">
+        <a-entity layout="type: circle; radius: 10" position="0 7.5 0">
+           {% for x in range(num) %}
+            <a-cube rotation="0 45 0" width="2" height="15" depth="2" color="#4CC3D9">
+            </a-cube>
+           {% endfor %}
+
+        </a-entity>
+        </script>
+        <script id="sphere" type="text/x-nunjucks-template">
+        <a-entity layout="type: circle; radius: 3" position="0 -1.5 0">
+           {% for x in range(num) %}
+            <a-sphere raduis="0.5" color="#4CC3D9">
+            </a-sphere >
+           {% endfor %}
+
+        </a-entity>
+        </script>
+      </a-assets>
+       <a-entity template="src: #cube" data-num="15" color="#DsF659A"></a-entity>
+       <a-entity template="src: #cube2" data-num="100"></a-entity>
+       <a-entity position="0 -2.5 0" template="src: #cube2" data-num="15"></a-entity>
+       <a-entity position="0 2.5 0" template="src: #cube" data-num="100"></a-entity>
+        <a-entity template="src: #col" data-num="4"></a-entity>
+        <a-entity template="src: #col2" data-num="4"></a-entity>
+
+        <!-- New lights. -->
+        <a-light type="spot" color="#DDD" position="-15 25 0" look-at="a-box"></a-light>
+        <a-light type="point" color="#CCC" position="0 14 0"></a-light>
+        <a-light type="point" color="#CCC" position="0 -14 0"></a-light>
+
+
+
+       <a-camera id="me" position="0 1.8 0">
+          <a-cursor color="#AFAFAF">
+       </a-camera>
+      <a-plane rotation="-90 0 0" width="1" height="1" color="#FFFFF"></a-plane>
+      <a-sky color="#FFFFFF"></a-sky>
+    </a-scene>
+  </body>
+</html>
